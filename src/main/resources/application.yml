@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    aws:
+      s3:
+        endpoint: http://localhost:4566
+        path-style-access-enabled: true
+      sqs:
+        endpoint: http://localhost:4566
+      dynamodb:
+        endpoint: http://localhost:4566
+      credentials:
+        access-key: test
+        secret-key: test
+      region:
+        static: us-east-1
+book-service:
+  bucket: book-bucket
+  queue: book-queue
+server:
+  port: 8085

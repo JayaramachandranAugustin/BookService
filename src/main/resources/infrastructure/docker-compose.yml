@@ -1,0 +1,21 @@
+version: '3.1'
+services:
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack
+    ports:
+      - "127.0.0.1:4566:4566"            # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+      - "127.0.0.1:443:443"              # LocalStack HTTPS Gateway
+    hostname: localstack
+    environment:
+      - AWS_DEFAULT_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - DEBUG=1
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - LS_LOG=WARN
+      - HOSTNAME_EXTERNAL=localstack
+      - SERVICES=s3,dynamodb,sqs
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
